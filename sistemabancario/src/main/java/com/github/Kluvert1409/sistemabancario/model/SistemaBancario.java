@@ -5,7 +5,6 @@
 package com.github.Kluvert1409.sistemabancario.model;
 
 /**
- *
  * @author UVC
  */
 public class SistemaBancario {

@@ -4,9 +4,10 @@
  */
 package com.github.Kluvert1409.sistemabancario.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 /**
- *
  * @author UVC
  */
 @Entity

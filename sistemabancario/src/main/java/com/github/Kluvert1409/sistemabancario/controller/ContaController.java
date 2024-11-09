@@ -47,7 +47,7 @@ public class ContaController {
 
     @DeleteMapping("/apagarConta/{id}")
     public void apagarConta(@PathVariable("id") int id) {
-            contaRepository.deleteById(id);
+        contaRepository.deleteById(id);
     }
 
     @PutMapping("/atualizarConta/{id}")
@@ -56,8 +56,8 @@ public class ContaController {
         if (contaOptional.isPresent()) {
             Conta contaExistente = contaOptional.get();
 
-                contaExistente.setNomeConta(nomeConta);
-                contaRepository.save(contaExistente);
+            contaExistente.setNomeConta(nomeConta);
+            contaRepository.save(contaExistente);
         }
     }
 

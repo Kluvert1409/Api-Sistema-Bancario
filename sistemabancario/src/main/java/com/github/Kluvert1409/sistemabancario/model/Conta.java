@@ -5,10 +5,10 @@
 package com.github.Kluvert1409.sistemabancario.model;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 /**
- *
  * @author UVC
  */
 @Entity
@@ -46,11 +46,17 @@ public abstract class Conta implements Serializable {
         this.saldoConta = saldoConta;
     }
 
-    public String getTipoConta() { return tipoConta; }
+    public String getTipoConta() {
+        return tipoConta;
+    }
 
-    public void setTipoConta(String tipoConta) {this.tipoConta = tipoConta; }
+    public void setTipoConta(String tipoConta) {
+        this.tipoConta = tipoConta;
+    }
 
-    public void setNumeroConta(int numeroConta) {this.numeroConta = numeroConta;}
+    public void setNumeroConta(int numeroConta) {
+        this.numeroConta = numeroConta;
+    }
 
     public int getNumeroConta() {
         return numeroConta;
