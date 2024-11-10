@@ -1,9 +1,12 @@
 package com.github.Kluvert1409.sistemabancario.model;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -15,6 +18,7 @@ public class InterfaceGrafica extends JFrame {
     private JTextField nomeConta;
     private JComboBox<String> tipoConta;
     private JLabel nomeLabel, tipoContaLabel;
+    private JPanel panelBackGround;
     private JButton botaoCriarConta;
 
     private ContaCorrente contaCorrente;
@@ -41,19 +45,32 @@ public class InterfaceGrafica extends JFrame {
         adicionarCamposTexto();
         adicionarLabels();
         adicionarBotoes();
+        panelBackground();
+    }
+
+
+    private void panelBackground() {
+        panelBackGround = new JPanel();
+        panelBackGround.setBackground(new Color(32, 32, 32));
+        panelBackGround.setBounds(0, 0, 520, 600);
+        add(panelBackGround);
     }
 
     private void adicionarCamposTexto() {
         nomeConta = new JTextField();
         nomeConta.setBounds(200, 60, 250, 30);
-        nomeConta.setFont(new Font("Arial", Font.PLAIN, 14));
-        nomeConta.setBackground(new Color(255, 255, 255));
+        nomeConta.setFont(new Font("Cascadian", Font.BOLD, 16));
+        nomeConta.setBackground(Color.lightGray);
+        nomeConta.setForeground(Color.black);
+        nomeConta.setBorder(new LineBorder(new Color(235, 94, 0), 1));
         add(nomeConta);
 
         tipoConta = new JComboBox<>(new String[]{"Conta Corrente", "Conta Poupança", "Conta Especial"});
         tipoConta.setBounds(200, 110, 250, 30);
-        tipoConta.setFont(new Font("Arial", Font.PLAIN, 14));
-        tipoConta.setBackground(new Color(255, 255, 255));
+        tipoConta.setFont(new Font("Cascadian", Font.PLAIN, 18));
+        tipoConta.setBackground(Color.lightGray);
+        tipoConta.setForeground(Color.black);
+        tipoConta.setBorder(new LineBorder(new Color(235, 94, 0), 1));
         add(tipoConta);
     }
 
@@ -61,22 +78,24 @@ public class InterfaceGrafica extends JFrame {
 
         nomeLabel = new JLabel("Nome:");
         nomeLabel.setBounds(50, 60, 150, 30);
-        nomeLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        nomeLabel.setForeground(new Color(34, 45, 50));
+        nomeLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
+        nomeLabel.setForeground(new Color(255, 102, 0));
         add(nomeLabel);
 
         tipoContaLabel = new JLabel("Tipo de Conta:");
         tipoContaLabel.setBounds(50, 110, 150, 30);
-        tipoContaLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        tipoContaLabel.setForeground(new Color(34, 45, 50));
+        tipoContaLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
+        tipoContaLabel.setForeground(new Color(255, 102, 0));
         add(tipoContaLabel);
     }
 
     private void adicionarBotoes() {
         botaoCriarConta = new JButton("Criar Conta");
         botaoCriarConta.setBounds(50, 170, 150, 40);
-        botaoCriarConta.setBackground(Color.black);
+        botaoCriarConta.setFont(new Font("Cascadian", Font.PLAIN, 18));
+        botaoCriarConta.setBackground(new Color(255, 102, 0));
         botaoCriarConta.setForeground(Color.white);
+        botaoCriarConta.setBorder(new LineBorder(new Color(235, 94, 0), 1));
         botaoCriarConta.setFocusPainted(false);
         add(botaoCriarConta);
     }
@@ -86,6 +105,18 @@ public class InterfaceGrafica extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 criarConta();
+            }
+        });
+
+        botaoCriarConta.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botaoCriarConta.setBorder(new LineBorder(new Color(255, 229, 204), 2));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botaoCriarConta.setBorder(new LineBorder(new Color(235, 94, 0), 2));
             }
         });
     }
