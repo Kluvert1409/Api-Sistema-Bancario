@@ -1,15 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.github.Kluvert1409.sistemabancario.model;
 
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 
 /**
- * @author UVC
+ * @author Kluvert
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
