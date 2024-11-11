@@ -10,4 +10,4 @@ spring:
   h2:
     console:
       enabled: true
-      pah: /h2-console
+      path: /h2-console

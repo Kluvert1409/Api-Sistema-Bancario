@@ -20,6 +20,11 @@ public class ContaCorrente extends Conta {
         this.taxa = taxa;
     }
 
+    public ContaCorrente(String nomeConta, String tipoConta, double saldoConta, double taxa) {
+        super(nomeConta, tipoConta, saldoConta);
+        this.taxa = taxa;
+    }
+
     public ContaCorrente(int numeroConta, String nomeConta, String tipoConta, double taxa) {
         super(numeroConta, nomeConta, tipoConta);
         this.taxa = taxa;

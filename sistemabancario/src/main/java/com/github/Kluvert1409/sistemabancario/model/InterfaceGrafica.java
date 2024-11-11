@@ -24,7 +24,7 @@ public class InterfaceGrafica extends JFrame {
     private ContaCorrente contaCorrente;
     private ContaPoupanca contaPoupanca;
     private ContaEspecial contaEspecial;
-    private int id = 1;
+    private int id = 6;
 
     public InterfaceGrafica() {
         configurarJanela();

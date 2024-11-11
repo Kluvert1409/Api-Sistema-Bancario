@@ -28,6 +28,12 @@ public abstract class Conta implements Serializable {
         this.tipoConta = tipoConta;
     }
 
+    public Conta(String nomeConta, String tipoConta, double saldoConta) {
+        this.nomeConta = nomeConta;
+        this.tipoConta = tipoConta;
+        this.saldoConta = saldoConta;
+    }
+
     public Conta(int numeroConta, String nomeConta, String tipoConta) {
         this.numeroConta = numeroConta;
         this.nomeConta = nomeConta;

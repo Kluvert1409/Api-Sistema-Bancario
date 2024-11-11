@@ -6,6 +6,7 @@ import com.github.Kluvert1409.sistemabancario.model.ContaEspecial;
 import com.github.Kluvert1409.sistemabancario.model.ContaPoupanca;
 import com.github.Kluvert1409.sistemabancario.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
@@ -78,18 +79,32 @@ public class ContaController {
     }
 
     @PutMapping("/sacar/{id}/{valorSaque}")
-    public void sacar(@PathVariable("id") int id, @PathVariable("valorSaque") double valorSaque) {
+    public ResponseEntity<String> sacar(@PathVariable("id") int id, @PathVariable("valorSaque") double valorSaque) {
         Optional<Conta> contaOptional = contaRepository.findById(id);
-        if (contaOptional.isPresent()) {
-            Conta contaExistente = contaOptional.get();
 
-            try {
-                contaExistente.setSacar(valorSaque);
-                contaRepository.save(contaExistente);
-            } catch (Exception e) {
-            }
+        if (!contaOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Conta não encontrada");
+        }
+
+        Conta contaExistente = contaOptional.get();
+
+        if (valorSaque <= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O valor de saque deve ser maior que zero");
+        }
+
+        if (valorSaque > contaExistente.getSaldoConta()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Saldo insuficiente");
+        }
+
+        try {
+            contaExistente.setSacar(valorSaque);
+            contaRepository.save(contaExistente);
+            return ResponseEntity.ok("Saque realizado com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao processar o saque");
         }
     }
+
 
 
     @GetMapping("/retornarDados/{id}")

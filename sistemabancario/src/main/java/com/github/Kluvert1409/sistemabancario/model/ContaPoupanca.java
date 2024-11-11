@@ -20,6 +20,11 @@ public class ContaPoupanca extends Conta {
         this.rendimento = rendimento;
     }
 
+    public ContaPoupanca(String nomeConta, String tipoConta, double saldoConta, double taxa) {
+        super(nomeConta, tipoConta, saldoConta);
+        this.rendimento = rendimento;
+    }
+
     public ContaPoupanca(int numeroConta, String nomeConta, String tipoConta, double rendimento) {
         super(numeroConta, nomeConta, tipoConta);
         this.rendimento = rendimento;

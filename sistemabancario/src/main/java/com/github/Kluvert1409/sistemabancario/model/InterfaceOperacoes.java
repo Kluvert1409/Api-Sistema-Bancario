@@ -14,8 +14,10 @@ import java.util.Scanner;
 public class InterfaceOperacoes extends JFrame {
 
     private JTextField valor;
-    private JLabel nomeTopo, idTopo, valorLabel;
+    private JLabel nomeTopo, idTopo, valorLabel, saque, deposito, consulta, fotoUsuario;
     private JButton botaoDepositar, botaoSacar, botaoConsultar;
+    private JPanel panelBackGround, panelSuperior;
+    private JLayeredPane layeredPane;
 
     private int id;
 
@@ -24,6 +26,9 @@ public class InterfaceOperacoes extends JFrame {
         configurarJanela();
         inicializarComponentes(nomeConta, idConta);
         adicionarAcoesBotoes();
+        criarLayeredPane();
+        criarPanelSuperior();
+        criarPanelBackground();
     }
 
     private void configurarJanela() {
@@ -35,51 +40,105 @@ public class InterfaceOperacoes extends JFrame {
         setLayout(null);
     }
 
+    private void criarLayeredPane() {
+        layeredPane = new JLayeredPane();
+        layeredPane.setBounds(0, 0, 520, 600);
+        add(layeredPane);
+    }
+
+    private void criarPanelSuperior() {
+        panelSuperior = new JPanel();
+        panelSuperior.setBackground(new Color(255, 102, 0));
+        panelSuperior.setBounds(0, 0, 520, 100);
+        panelSuperior.setVisible(true);
+        layeredPane.add(panelSuperior, JLayeredPane.DEFAULT_LAYER);
+    }
+
+    private void criarPanelBackground() {
+        panelBackGround = new JPanel();
+        panelBackGround.setBackground(new Color(32, 32, 32));
+        panelBackGround.setBounds(0, 0, 520, 600);
+        layeredPane.add(panelBackGround, JLayeredPane.DEFAULT_LAYER);
+    }
+
     private void inicializarComponentes(String nomeConta, int idConta) {
+
+        fotoUsuario = new JLabel();
+        fotoUsuario.setBounds(20, 0, 150, 100);
+        fotoUsuario.setFont(new Font("Cascadian", Font.PLAIN, 22));
+        fotoUsuario.setForeground(Color.white);
+        ImageIcon imagemUser = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\user_60px.png");
+        fotoUsuario.setIcon(imagemUser);
+        add(fotoUsuario);
+
         nomeTopo = new JLabel("Olá, " + nomeConta);
-        nomeTopo.setBounds(50, 10, 150, 30);
-        nomeTopo.setFont(new Font("Arial", Font.BOLD, 18));
-        nomeTopo.setForeground(new Color(34, 45, 50));
+        nomeTopo.setBounds(100, 45, 150, 30);
+        nomeTopo.setFont(new Font("Cascadian", Font.BOLD, 22));
+        nomeTopo.setForeground(Color.white);
         add(nomeTopo);
 
         idTopo = new JLabel("N° da Conta: " + idConta);
-        idTopo.setBounds(250, 10, 150, 30);
-        idTopo.setFont(new Font("Arial", Font.BOLD, 18));
-        idTopo.setForeground(new Color(34, 45, 50));
+        idTopo.setBounds(395, 70, 150, 30);
+        idTopo.setFont(new Font("Cascadian", Font.PLAIN, 16));
+        idTopo.setForeground(Color.white);
         add(idTopo);
 
         valorLabel = new JLabel("Valor:");
-        valorLabel.setBounds(50, 220, 150, 30);
-        valorLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        valorLabel.setForeground(new Color(34, 45, 50));
+        valorLabel.setBounds(50, 175, 150, 30);
+        valorLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
+        valorLabel.setForeground(new Color(255, 102, 0));
         add(valorLabel);
 
+        saque = new JLabel("Saque");
+        saque.setBounds(70, 340, 150, 30);
+        saque.setFont(new Font("Cascadian", Font.BOLD, 18));
+        saque.setForeground(new Color(255, 102, 0));
+        add(saque);
+
+        deposito = new JLabel("Depósito");
+        deposito.setBounds(210, 340, 150, 30);
+        deposito.setFont(new Font("Cascadian", Font.BOLD, 18));
+        deposito.setForeground(new Color(255, 102, 0));
+        add(deposito);
+
+        consulta = new JLabel("Consulta");
+        consulta.setBounds(360, 340, 150, 30);
+        consulta.setFont(new Font("Cascadian", Font.BOLD, 18));
+        consulta.setForeground(new Color(255, 102, 0));
+        add(consulta);
+
         valor = new JTextField();
-        valor.setBounds(200, 220, 250, 30);
-        valor.setFont(new Font("Arial", Font.PLAIN, 14));
+        valor.setBounds(200, 175, 250, 30);
+        valor.setFont(new Font("Cascadian", Font.PLAIN, 18));
         valor.setBackground(new Color(255, 255, 255));
         valor.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200)));
         add(valor);
 
-        botaoDepositar = new JButton("Depositar");
-        botaoDepositar.setBounds(50, 280, 150, 40);
-        botaoDepositar.setBackground(Color.black);
-        botaoDepositar.setForeground(Color.white);
-        botaoDepositar.setFocusPainted(false);
-        add(botaoDepositar);
-
-        botaoSacar = new JButton("Sacar");
-        botaoSacar.setBounds(220, 280, 150, 40);
-        botaoSacar.setBackground(Color.black);
+        botaoSacar = new JButton();
+        botaoSacar.setBounds(45, 275, 105, 60);
+        botaoSacar.setBackground(new Color(255, 102, 0));
         botaoSacar.setForeground(Color.white);
         botaoSacar.setFocusPainted(false);
+        ImageIcon imagemSaque = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\get_cash_80px.png");
+        botaoSacar.setIcon(imagemSaque);
         add(botaoSacar);
 
-        botaoConsultar = new JButton("Consultar");
-        botaoConsultar.setBounds(50, 340, 150, 40);
-        botaoConsultar.setBackground(Color.black);
+        botaoDepositar = new JButton();
+        botaoDepositar.setBounds(195, 275, 105, 60);
+        botaoDepositar.setBackground(new Color(255, 102, 0));
+        botaoDepositar.setForeground(Color.white);
+        botaoDepositar.setFocusPainted(false);
+        ImageIcon imagemDeposito = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\real_30px.png");
+        botaoDepositar.setIcon(imagemDeposito);
+        add(botaoDepositar);
+
+        botaoConsultar = new JButton();
+        botaoConsultar.setBounds(345, 275, 105, 60);
+        botaoConsultar.setBackground(new Color(255, 102, 0));
         botaoConsultar.setForeground(Color.white);
         botaoConsultar.setFocusPainted(false);
+        ImageIcon imagemConsultar = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\consultation_60px.png");
+        botaoConsultar.setIcon(imagemConsultar);
         add(botaoConsultar);
     }
 
@@ -133,7 +192,7 @@ public class InterfaceOperacoes extends JFrame {
 
     private void realizarSaque() {
         String textoValor = valor.getText().trim();
-        if (textoValor.isEmpty()) {
+        if (textoValor.isEmpty() || textoValor.equals("0")) {
             JOptionPane.showMessageDialog(this, "Por favor, insira um valor para o saque", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
             double valor = Double.parseDouble(textoValor);

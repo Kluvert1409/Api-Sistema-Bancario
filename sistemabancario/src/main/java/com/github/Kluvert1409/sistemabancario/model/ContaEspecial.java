@@ -20,6 +20,11 @@ public class ContaEspecial extends Conta {
         this.limite = limite;
     }
 
+    public ContaEspecial(String nomeConta, String tipoConta, double saldoConta, double taxa) {
+        super(nomeConta, tipoConta, saldoConta);
+        this.limite = limite;
+    }
+
     public ContaEspecial(int numeroConta, String nomeConta, String tipoConta, double limite) {
         super(numeroConta, nomeConta, tipoConta);
         this.limite = limite;
