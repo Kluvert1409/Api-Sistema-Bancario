@@ -1,9 +1,12 @@
 package com.github.Kluvert1409.sistemabancario.model;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -120,6 +123,7 @@ public class InterfaceOperacoes extends JFrame {
         botaoSacar.setForeground(Color.white);
         botaoSacar.setFocusPainted(false);
         ImageIcon imagemSaque = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\get_cash_80px.png");
+        botaoSacar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         botaoSacar.setIcon(imagemSaque);
         add(botaoSacar);
 
@@ -129,6 +133,7 @@ public class InterfaceOperacoes extends JFrame {
         botaoDepositar.setForeground(Color.white);
         botaoDepositar.setFocusPainted(false);
         ImageIcon imagemDeposito = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\real_30px.png");
+        botaoDepositar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         botaoDepositar.setIcon(imagemDeposito);
         add(botaoDepositar);
 
@@ -138,6 +143,7 @@ public class InterfaceOperacoes extends JFrame {
         botaoConsultar.setForeground(Color.white);
         botaoConsultar.setFocusPainted(false);
         ImageIcon imagemConsultar = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\consultation_60px.png");
+        botaoConsultar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         botaoConsultar.setIcon(imagemConsultar);
         add(botaoConsultar);
     }
@@ -150,6 +156,18 @@ public class InterfaceOperacoes extends JFrame {
             }
         });
 
+        botaoDepositar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botaoDepositar.setBorder(new LineBorder(new Color(255, 229, 204), 2));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botaoDepositar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
+            }
+        });
+
         botaoSacar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -157,10 +175,34 @@ public class InterfaceOperacoes extends JFrame {
             }
         });
 
+        botaoSacar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botaoSacar.setBorder(new LineBorder(new Color(255, 229, 204), 2));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botaoSacar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
+            }
+        });
+
         botaoConsultar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 consultarConta();
+            }
+        });
+
+        botaoConsultar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botaoConsultar.setBorder(new LineBorder(new Color(255, 229, 204), 2));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botaoConsultar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
             }
         });
     }
