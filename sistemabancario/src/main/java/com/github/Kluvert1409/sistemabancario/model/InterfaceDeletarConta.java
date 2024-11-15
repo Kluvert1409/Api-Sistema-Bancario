@@ -76,7 +76,7 @@ public class InterfaceDeletarConta extends JFrame {
         add(botaoApagarConta);
 
         botaoVoltar = new JButton();
-        botaoVoltar.setBounds(50, 235, 80, 35);
+        botaoVoltar.setBounds(50, 275, 80, 35);
         botaoVoltar.setFont(new Font("Cascadian", Font.BOLD, 18));
         botaoVoltar.setBackground(new Color(255, 102, 0));
         botaoVoltar.setForeground(Color.white);

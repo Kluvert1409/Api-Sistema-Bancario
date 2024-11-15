@@ -12,8 +12,8 @@ public class InterfaceFuncionario extends JFrame {
 
     private JLabel texto, criarContaLabel, deletarContaLabel, atualizarContaLabel;
     private JPanel panelBackGround;
-    private JButton botaoCriarConta, botaoDeletarConta, botaoAtualizarConta;
-    private ImageIcon imagemCriar, imagemDeletar, imagemAtualizar;
+    private JButton botaoCriarConta, botaoDeletarConta, botaoAtualizarConta, botaoVoltar;
+    private ImageIcon imagemCriar, imagemDeletar, imagemAtualizar, imagemVoltar;
 
     public InterfaceFuncionario() {
         configurarJanela();
@@ -96,6 +96,17 @@ public class InterfaceFuncionario extends JFrame {
         botaoAtualizarConta.setIcon(imagemAtualizar);
         botaoAtualizarConta.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         add(botaoAtualizarConta);
+
+        botaoVoltar = new JButton();
+        botaoVoltar.setBounds(50, 450, 80, 35);
+        botaoVoltar.setFont(new Font("Cascadian", Font.BOLD, 18));
+        botaoVoltar.setBackground(new Color(255, 102, 0));
+        botaoVoltar.setForeground(Color.white);
+        imagemVoltar = new ImageIcon(getClass().getResource("/imagens/back_48px.png"));
+        botaoVoltar.setIcon(imagemVoltar);
+        botaoVoltar.setBorder(new LineBorder(new Color(235, 94, 0), 1));
+        botaoVoltar.setFocusPainted(false);
+        add(botaoVoltar);
     }
 
     private void adicionarAcoesBotoes() {
@@ -155,6 +166,25 @@ public class InterfaceFuncionario extends JFrame {
                 botaoAtualizarConta.setBorder(new LineBorder(new Color(235, 94, 0), 2));
             }
         });
+
+        botaoVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                retornar();
+            }
+        });
+
+        botaoVoltar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botaoVoltar.setBorder(new LineBorder(new Color(255, 229, 204), 2));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botaoVoltar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
+            }
+        });
     }
 
     private void encaminharCriarConta() {
@@ -171,6 +201,12 @@ public class InterfaceFuncionario extends JFrame {
 
     private void encaminharAtualizarConta() {
         InterfaceAtualizar novaJanela = new InterfaceAtualizar();
+        novaJanela.setVisible(true);
+        dispose();
+    }
+
+    private void retornar() {
+        InterfacePrimaria novaJanela = new InterfacePrimaria();
         novaJanela.setVisible(true);
         dispose();
     }

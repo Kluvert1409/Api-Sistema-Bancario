@@ -14,9 +14,10 @@ import java.util.Scanner;
 public class InterfaceLoginUsuario extends JFrame {
 
     private JTextField campoId;
-    private JButton botaoConfirmar;
+    private JButton botaoConfirmar, botaoVoltar;
     private JPanel panelBackGround;
     private JLabel labelId;
+    private ImageIcon imagemVoltar;
 
     public InterfaceLoginUsuario() {
         configurarJanela();
@@ -27,7 +28,7 @@ public class InterfaceLoginUsuario extends JFrame {
 
     private void configurarJanela() {
         setTitle("Login do Usuário");
-        setSize(400, 200);
+        setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -37,7 +38,7 @@ public class InterfaceLoginUsuario extends JFrame {
     private void panelBackground() {
         panelBackGround = new JPanel();
         panelBackGround.setBackground(new Color(32, 32, 32));
-        panelBackGround.setBounds(0, 0, 400, 200);
+        panelBackGround.setBounds(0, 0, 400, 400);
         add(panelBackGround);
     }
 
@@ -63,6 +64,17 @@ public class InterfaceLoginUsuario extends JFrame {
         botaoConfirmar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         botaoConfirmar.setFocusPainted(false);
         add(botaoConfirmar);
+
+        botaoVoltar = new JButton();
+        botaoVoltar.setBounds(50, 300, 80, 35);
+        botaoVoltar.setFont(new Font("Cascadian", Font.BOLD, 18));
+        botaoVoltar.setBackground(new Color(255, 102, 0));
+        botaoVoltar.setForeground(Color.white);
+        imagemVoltar = new ImageIcon(getClass().getResource("/imagens/back_48px.png"));
+        botaoVoltar.setIcon(imagemVoltar);
+        botaoVoltar.setBorder(new LineBorder(new Color(235, 94, 0), 1));
+        botaoVoltar.setFocusPainted(false);
+        add(botaoVoltar);
     }
 
     private void adicionarAcoes() {
@@ -92,6 +104,25 @@ public class InterfaceLoginUsuario extends JFrame {
             @Override
             public void mouseExited(MouseEvent e) {
                 botaoConfirmar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
+            }
+        });
+
+        botaoVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                retornar();
+            }
+        });
+
+        botaoVoltar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botaoVoltar.setBorder(new LineBorder(new Color(255, 229, 204), 2));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botaoVoltar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
             }
         });
     }
@@ -129,6 +160,12 @@ public class InterfaceLoginUsuario extends JFrame {
 
     private void redirecionarParaOperacoes(String nome, int id) {
         InterfaceOperacoes novaJanela = new InterfaceOperacoes(nome, id);
+        novaJanela.setVisible(true);
+        dispose();
+    }
+
+    private void retornar() {
+        InterfacePrimaria novaJanela = new InterfacePrimaria();
         novaJanela.setVisible(true);
         dispose();
     }
