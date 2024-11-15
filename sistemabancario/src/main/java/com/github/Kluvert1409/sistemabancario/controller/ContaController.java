@@ -11,9 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
-/**
- * @author Kluvert
- */
 @RestController
 @RequestMapping("conta")
 public class ContaController {
@@ -105,8 +102,6 @@ public class ContaController {
         }
     }
 
-
-
     @GetMapping("/retornarDados/{id}")
     public String retornarDados(@PathVariable("id") int id) {
         Optional<Conta> contaOptional = contaRepository.findById(id);
@@ -114,6 +109,18 @@ public class ContaController {
         if (contaOptional.isPresent()) {
             Conta conta = contaOptional.get();
             return conta.getRetorno();
+        } else {
+            return "Conta não encontrada";
+        }
+    }
+
+    @GetMapping("/retornarDadosSimples/{id}")
+    public String retornarDadosSimples(@PathVariable("id") int id) {
+        Optional<Conta> contaOptional = contaRepository.findById(id);
+
+        if (contaOptional.isPresent()) {
+            Conta conta = contaOptional.get();
+            return conta.getRetornoSimples();
         } else {
             return "Conta não encontrada";
         }

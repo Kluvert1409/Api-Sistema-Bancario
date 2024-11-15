@@ -10,9 +10,6 @@ import java.awt.event.MouseEvent;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * @author Kluvert
- */
 public class InterfaceGrafica extends JFrame {
 
     private JTextField nomeConta;
@@ -144,11 +141,10 @@ public class InterfaceGrafica extends JFrame {
                 if (resposta == 200) {
                     JOptionPane.showMessageDialog(this, "Conta criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-                    // Abra a nova janela de operações e feche a atual
                     InterfaceOperacoes operacoesJanela = new InterfaceOperacoes(nome, id);
                     operacoesJanela.setVisible(true);
 
-                    dispose(); // Fechar a janela atual
+                    dispose();
 
                 } else {
                     JOptionPane.showMessageDialog(this, "Erro ao criar conta", "Erro", JOptionPane.ERROR_MESSAGE);

@@ -20,11 +20,11 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (contaRepository.count() == 0) {
-            Conta conta1 = new ContaCorrente("Kaik Miguel", "Conta Corrente", 3000.00, 1.5);
-            Conta conta2 = new ContaCorrente("Mariana Gabriela", "Conta Corrente", 4000.00, 1.5);
-            Conta conta3 = new ContaEspecial("Lucas Montano", "Conta Especial", 1500.00,100);
-            Conta conta4 = new ContaPoupanca("Rafael Camargo", "Conta Poupanca", 1000.00, 0.05);
-            Conta conta5 = new ContaEspecial("João Silva", "Conta Especial",500.00, 100);
+            Conta conta1 = new ContaCorrente("Kaik", "Conta Corrente", 3000.00, 1.5);
+            Conta conta2 = new ContaCorrente("Mariana", "Conta Corrente", 4000.00, 1.5);
+            Conta conta3 = new ContaEspecial("Lucas", "Conta Especial", 1500.00,100);
+            Conta conta4 = new ContaPoupanca("Rafael", "Conta Poupanca", 1000.00, 0.05);
+            Conta conta5 = new ContaEspecial("João", "Conta Especial",500.00, 100);
 
             contaRepository.save(conta1);
             contaRepository.save(conta2);

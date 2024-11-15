@@ -11,9 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-/**
- * @author Kluvert
- */
 public class InterfaceOperacoes extends JFrame {
 
     private JTextField valor;
@@ -21,11 +18,14 @@ public class InterfaceOperacoes extends JFrame {
     private JButton botaoDepositar, botaoSacar, botaoConsultar;
     private JPanel panelBackGround, panelSuperior;
     private JLayeredPane layeredPane;
+    private ImageIcon imagemSaque, imagemDeposito, imagemConsultar, imagemUser;
 
-    private int id;
+    private int idConta;
+    private String nomeConta;
 
     public InterfaceOperacoes(String nomeConta, int idConta) {
-        this.id = idConta;
+        this.nomeConta = nomeConta;
+        this.idConta = idConta;
         configurarJanela();
         inicializarComponentes(nomeConta, idConta);
         adicionarAcoesBotoes();
@@ -70,7 +70,7 @@ public class InterfaceOperacoes extends JFrame {
         fotoUsuario.setBounds(20, 0, 150, 100);
         fotoUsuario.setFont(new Font("Cascadian", Font.PLAIN, 22));
         fotoUsuario.setForeground(Color.white);
-        ImageIcon imagemUser = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\user_60px.png");
+        imagemUser = new ImageIcon(getClass().getResource("/imagens/user_60px.png"));
         fotoUsuario.setIcon(imagemUser);
         add(fotoUsuario);
 
@@ -122,7 +122,7 @@ public class InterfaceOperacoes extends JFrame {
         botaoSacar.setBackground(new Color(255, 102, 0));
         botaoSacar.setForeground(Color.white);
         botaoSacar.setFocusPainted(false);
-        ImageIcon imagemSaque = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\get_cash_80px.png");
+        imagemSaque = new ImageIcon(getClass().getResource("/imagens/get_cash_80px.png"));
         botaoSacar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         botaoSacar.setIcon(imagemSaque);
         add(botaoSacar);
@@ -132,7 +132,7 @@ public class InterfaceOperacoes extends JFrame {
         botaoDepositar.setBackground(new Color(255, 102, 0));
         botaoDepositar.setForeground(Color.white);
         botaoDepositar.setFocusPainted(false);
-        ImageIcon imagemDeposito = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\real_30px.png");
+        imagemDeposito = new ImageIcon(getClass().getResource("/imagens/real_30px.png"));
         botaoDepositar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         botaoDepositar.setIcon(imagemDeposito);
         add(botaoDepositar);
@@ -142,7 +142,7 @@ public class InterfaceOperacoes extends JFrame {
         botaoConsultar.setBackground(new Color(255, 102, 0));
         botaoConsultar.setForeground(Color.white);
         botaoConsultar.setFocusPainted(false);
-        ImageIcon imagemConsultar = new ImageIcon("C:\\Users\\Kluvert\\Documents\\Intellij repositório\\sistemabancario\\sistemabancario\\src\\main\\java\\com\\github\\Kluvert1409\\sistemabancario\\imagens\\consultation_60px.png");
+        imagemConsultar = new ImageIcon(getClass().getResource("/imagens/consultation_60px.png"));
         botaoConsultar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         botaoConsultar.setIcon(imagemConsultar);
         add(botaoConsultar);
@@ -214,7 +214,7 @@ public class InterfaceOperacoes extends JFrame {
         } else {
             double valor = Double.parseDouble(textoValor);
             try {
-                URL url = new URL("http://localhost:8080/conta/depositar/" + id + "/" + valor);
+                URL url = new URL("http://localhost:8080/conta/depositar/" + idConta + "/" + valor);
                 HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
                 conexaoHttp.setRequestMethod("PUT");
                 int resposta = conexaoHttp.getResponseCode();
@@ -239,7 +239,7 @@ public class InterfaceOperacoes extends JFrame {
         } else {
             double valor = Double.parseDouble(textoValor);
             try {
-                URL url = new URL("http://localhost:8080/conta/sacar/" + id + "/" + valor);
+                URL url = new URL("http://localhost:8080/conta/sacar/" + idConta + "/" + valor);
                 HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
                 conexaoHttp.setRequestMethod("PUT");
                 int resposta = conexaoHttp.getResponseCode();
@@ -259,7 +259,7 @@ public class InterfaceOperacoes extends JFrame {
 
     private void consultarConta() {
         try {
-            URL url = new URL("http://localhost:8080/conta/retornarDados/" + id);
+            URL url = new URL("http://localhost:8080/conta/retornarDados/" + idConta);
             HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
             conexaoHttp.setRequestMethod("GET");
             int resposta = conexaoHttp.getResponseCode();

@@ -3,9 +3,6 @@ package com.github.Kluvert1409.sistemabancario.model;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
-/**
- * @author Kluvert
- */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Conta implements Serializable {
@@ -82,6 +79,8 @@ public abstract class Conta implements Serializable {
     public abstract String setSacar(double valorSaque) throws Exception;
 
     public abstract String setDepositar(double valorDeposito) throws Exception;
+
+    public abstract String getRetornoSimples();
 
     public abstract String getRetorno();
 }

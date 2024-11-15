@@ -3,9 +3,6 @@ package com.github.Kluvert1409.sistemabancario.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
-/**
- * @author Kluvert
- */
 @Entity
 @Table(name = "conta_corrente")
 public class ContaCorrente extends Conta {
@@ -63,6 +60,11 @@ public class ContaCorrente extends Conta {
             setSaldoConta(getSaldoConta() + valorDeposito);
             return "Depósito realizado com sucesso";
         }
+    }
+
+    @Override
+    public String getRetornoSimples() {
+        return (getNomeConta() + ";" + getNumeroConta() + ";" + getSaldoConta() + ";" + getTaxa());
     }
 
     @Override
