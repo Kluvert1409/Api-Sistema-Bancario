@@ -24,7 +24,7 @@ public class InterfacePrimaria extends JFrame {
 
     private void configurarJanela() {
         setTitle("Operações da Conta");
-        setSize(520, 600);
+        setSize(520, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -43,23 +43,27 @@ public class InterfacePrimaria extends JFrame {
         texto = new JLabel("Quem está usando o aplicativo?");
         texto.setBounds(90, 60, 330, 30);
         texto.setFont(new Font("Cascadian", Font.BOLD, 22));
-        texto.setForeground(Color.white);
+        texto.setForeground(new Color(255, 102, 0));
         add(texto);
     }
 
     private void criarBotoes() {
         botaoFuncionario = new JButton("Funcionário");
-        botaoFuncionario.setBounds(45, 275, 105, 60);
+        botaoFuncionario.setBounds(120, 150, 105, 60);
         botaoFuncionario.setBackground(new Color(255, 102, 0));
         botaoFuncionario.setForeground(Color.white);
+        botaoFuncionario.setFont(new Font("Cascadian", Font.BOLD, 16));
         botaoFuncionario.setFocusPainted(false);
+        botaoFuncionario.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         add(botaoFuncionario);
 
         botaoUsuario = new JButton("Usuário");
-        botaoUsuario.setBounds(195, 275, 105, 60);
+        botaoUsuario.setBounds(268, 150, 105, 60);
         botaoUsuario.setBackground(new Color(255, 102, 0));
         botaoUsuario.setForeground(Color.white);
+        botaoUsuario.setFont(new Font("Cascadian", Font.BOLD, 16));
         botaoUsuario.setFocusPainted(false);
+        botaoUsuario.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         add(botaoUsuario);
     }
 

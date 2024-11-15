@@ -1,9 +1,12 @@
 package com.github.Kluvert1409.sistemabancario.model;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -12,11 +15,14 @@ public class InterfaceLoginUsuario extends JFrame {
 
     private JTextField campoId;
     private JButton botaoConfirmar;
+    private JPanel panelBackGround;
+    private JLabel labelId;
 
     public InterfaceLoginUsuario() {
         configurarJanela();
         inicializarComponentes();
         adicionarAcoes();
+        panelBackground();
     }
 
     private void configurarJanela() {
@@ -28,22 +34,33 @@ public class InterfaceLoginUsuario extends JFrame {
         setLayout(null);
     }
 
+    private void panelBackground() {
+        panelBackGround = new JPanel();
+        panelBackGround.setBackground(new Color(32, 32, 32));
+        panelBackGround.setBounds(0, 0, 400, 200);
+        add(panelBackGround);
+    }
+
     private void inicializarComponentes() {
-        JLabel labelId = new JLabel("Digite o número da conta:");
-        labelId.setBounds(100, 30, 300, 20);
-        labelId.setFont(new Font("Cascadian", Font.BOLD, 14));
+        labelId = new JLabel("Digite o número da conta:");
+        labelId.setBounds(85, 25, 300, 20);
+        labelId.setFont(new Font("Cascadian", Font.BOLD, 18));
+        labelId.setForeground(new Color(255, 102, 0));
         add(labelId);
 
         campoId = new JTextField();
-        campoId.setBounds(50, 60, 300, 30);
-        campoId.setFont(new Font("Cascadian", Font.PLAIN, 14));
+        campoId.setBounds(80, 60, 230, 30);
+        campoId.setFont(new Font("Cascadian", Font.BOLD, 16));
+        campoId.setBackground(Color.lightGray);
+        campoId.setForeground(Color.black);
         add(campoId);
 
         botaoConfirmar = new JButton("Confirmar");
-        botaoConfirmar.setBounds(125, 110, 150, 30);
-        botaoConfirmar.setFont(new Font("Cascadian", Font.BOLD, 14));
+        botaoConfirmar.setBounds(125, 105, 150, 30);
+        botaoConfirmar.setFont(new Font("Cascadian", Font.PLAIN, 18));
         botaoConfirmar.setBackground(new Color(255, 102, 0));
-        botaoConfirmar.setForeground(Color.WHITE);
+        botaoConfirmar.setForeground(Color.white);
+        botaoConfirmar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         botaoConfirmar.setFocusPainted(false);
         add(botaoConfirmar);
     }
@@ -63,6 +80,18 @@ public class InterfaceLoginUsuario extends JFrame {
                         JOptionPane.showMessageDialog(InterfaceLoginUsuario.this, "ID inválido. Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                 }
+            }
+        });
+
+        botaoConfirmar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botaoConfirmar.setBorder(new LineBorder(new Color(255, 229, 204), 2));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botaoConfirmar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
             }
         });
     }
