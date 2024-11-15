@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class InterfaceDeletarConta extends JFrame {
+public class InterfaceAtualizar extends JFrame {
 
     private JTextField numeroConta;
     private JLabel texto;
@@ -18,7 +18,7 @@ public class InterfaceDeletarConta extends JFrame {
     private JPanel panelBackGround;
     private ImageIcon imagemVoltar;
 
-    public InterfaceDeletarConta() {
+    public InterfaceAtualizar() {
         configurarJanela();
         inicializarComponentes();
         adicionarAcoesBotoes();

@@ -108,14 +108,14 @@ public class InterfacePrimaria extends JFrame {
     }
 
     private void encaminharFuncionario() {
-        InterfaceFuncionario operacoesJanela = new InterfaceFuncionario();
-        operacoesJanela.setVisible(true);
+        InterfaceFuncionario novaJanela = new InterfaceFuncionario();
+        novaJanela.setVisible(true);
         dispose();
     }
 
     private void encaminharUsuario() {
-        InterfaceLoginUsuario operacoesJanela = new InterfaceLoginUsuario();
-        operacoesJanela.setVisible(true);
+        InterfaceLoginUsuario novaJanela = new InterfaceLoginUsuario();
+        novaJanela.setVisible(true);
         dispose();
     }
 }

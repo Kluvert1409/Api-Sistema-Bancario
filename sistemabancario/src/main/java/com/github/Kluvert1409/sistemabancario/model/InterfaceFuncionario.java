@@ -72,7 +72,7 @@ public class InterfaceFuncionario extends JFrame {
         botaoCriarConta.setBackground(new Color(255, 102, 0));
         botaoCriarConta.setForeground(Color.white);
         botaoCriarConta.setFocusPainted(false);
-        imagemCriar = new ImageIcon(getClass().getResource("/imagens/real_30px.png"));
+        imagemCriar = new ImageIcon(getClass().getResource("/imagens/add_64px.png"));
         botaoCriarConta.setIcon(imagemCriar);
         botaoCriarConta.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         add(botaoCriarConta);
@@ -158,20 +158,20 @@ public class InterfaceFuncionario extends JFrame {
     }
 
     private void encaminharCriarConta() {
-        InterfaceCriarConta criar = new InterfaceCriarConta();
-        criar.setVisible(true);
+        InterfaceCriarConta novaJanela = new InterfaceCriarConta();
+        novaJanela.setVisible(true);
         dispose();
     }
 
     private void encaminharDeletarConta() {
-        InterfaceCriarConta criar = new InterfaceCriarConta();
-        criar.setVisible(true);
+        InterfaceDeletarConta novaJanela = new InterfaceDeletarConta();
+        novaJanela.setVisible(true);
         dispose();
     }
 
     private void encaminharAtualizarConta() {
-        InterfaceCriarConta criar = new InterfaceCriarConta();
-        criar.setVisible(true);
+        InterfaceAtualizar novaJanela = new InterfaceAtualizar();
+        novaJanela.setVisible(true);
         dispose();
     }
 }

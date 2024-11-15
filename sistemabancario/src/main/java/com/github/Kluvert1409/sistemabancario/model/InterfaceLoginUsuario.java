@@ -121,7 +121,6 @@ public class InterfaceLoginUsuario extends JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao verificar o número. Código: " + resposta, "Erro", JOptionPane.ERROR_MESSAGE);
             }
-
             conexaoHttp.disconnect();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao processar a conta: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
@@ -129,8 +128,8 @@ public class InterfaceLoginUsuario extends JFrame {
     }
 
     private void redirecionarParaOperacoes(String nome, int id) {
-        InterfaceOperacoes operacoesJanela = new InterfaceOperacoes(nome, id);
-        operacoesJanela.setVisible(true);
+        InterfaceOperacoes novaJanela = new InterfaceOperacoes(nome, id);
+        novaJanela.setVisible(true);
         dispose();
     }
 }

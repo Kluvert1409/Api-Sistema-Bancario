@@ -47,9 +47,16 @@ public class ContaController {
 
 
     @DeleteMapping("/apagarConta/{id}")
-    public void apagarConta(@PathVariable("id") int id) {
+    public ResponseEntity<String> apagarConta(@PathVariable("id") int id) {
+        Optional<Conta> contaOptional = contaRepository.findById(id);
+
+        if (!contaOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Conta não encontrada");
+        }
         contaRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Conta apagada com sucesso");
     }
+
 
     @PutMapping("/atualizarConta/{id}")
     public void atualizarConta(@PathVariable("id") int id, @RequestParam("nomeConta") String nomeConta) {

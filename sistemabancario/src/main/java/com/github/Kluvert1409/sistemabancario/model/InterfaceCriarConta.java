@@ -16,7 +16,8 @@ public class InterfaceCriarConta extends JFrame {
     private JComboBox<String> tipoConta;
     private JLabel nomeLabel, tipoContaLabel, complementoLabel;
     private JPanel panelBackGround;
-    private JButton botaoCriarConta;
+    private JButton botaoCriarConta, botaoVoltar;
+    private ImageIcon imagemVoltar;
 
     private ContaCorrente contaCorrente;
     private ContaPoupanca contaPoupanca;
@@ -100,12 +101,23 @@ public class InterfaceCriarConta extends JFrame {
     private void adicionarBotoes() {
         botaoCriarConta = new JButton("Criar Conta");
         botaoCriarConta.setBounds(50, 220, 150, 40);
-        botaoCriarConta.setFont(new Font("Cascadian", Font.PLAIN, 18));
+        botaoCriarConta.setFont(new Font("Cascadian", Font.BOLD, 18));
         botaoCriarConta.setBackground(new Color(255, 102, 0));
         botaoCriarConta.setForeground(Color.white);
         botaoCriarConta.setBorder(new LineBorder(new Color(235, 94, 0), 1));
         botaoCriarConta.setFocusPainted(false);
         add(botaoCriarConta);
+
+        botaoVoltar = new JButton();
+        botaoVoltar.setBounds(50, 345, 80, 35);
+        botaoVoltar.setFont(new Font("Cascadian", Font.BOLD, 18));
+        botaoVoltar.setBackground(new Color(255, 102, 0));
+        botaoVoltar.setForeground(Color.white);
+        imagemVoltar = new ImageIcon(getClass().getResource("/imagens/back_48px.png"));
+        botaoVoltar.setIcon(imagemVoltar);
+        botaoVoltar.setBorder(new LineBorder(new Color(235, 94, 0), 1));
+        botaoVoltar.setFocusPainted(false);
+        add(botaoVoltar);
     }
 
     private void adicionarAcoesBotoes() {
@@ -132,6 +144,25 @@ public class InterfaceCriarConta extends JFrame {
             @Override
             public void itemStateChanged(java.awt.event.ItemEvent e) {
                 atualizarLabelComplemento();
+            }
+        });
+
+        botaoVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                retornar();
+            }
+        });
+
+        botaoVoltar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botaoVoltar.setBorder(new LineBorder(new Color(255, 229, 204), 2));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botaoVoltar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
             }
         });
     }
@@ -200,5 +231,11 @@ public class InterfaceCriarConta extends JFrame {
                 }
             }
         }
+    }
+
+    private void retornar() {
+        InterfaceFuncionario novaJanela = new InterfaceFuncionario();
+        novaJanela.setVisible(true);
+        dispose();
     }
 }
