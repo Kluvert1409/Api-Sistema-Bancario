@@ -86,14 +86,6 @@ public class ContaController {
 
         Conta contaExistente = contaOptional.get();
 
-        if (valorSaque <= 0) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O valor de saque deve ser maior que zero");
-        }
-
-        if (valorSaque > contaExistente.getSaldoConta()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Saldo insuficiente");
-        }
-
         try {
             contaExistente.setSacar(valorSaque);
             contaRepository.save(contaExistente);
