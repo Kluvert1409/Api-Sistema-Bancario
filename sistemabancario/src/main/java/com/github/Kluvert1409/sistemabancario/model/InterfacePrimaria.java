@@ -108,7 +108,7 @@ public class InterfacePrimaria extends JFrame {
     }
 
     private void encaminharFuncionario() {
-        InterfaceGrafica operacoesJanela = new InterfaceGrafica();
+        InterfaceFuncionario operacoesJanela = new InterfaceFuncionario();
         operacoesJanela.setVisible(true);
         dispose();
     }

@@ -10,20 +10,19 @@ import java.awt.event.MouseEvent;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class InterfaceGrafica extends JFrame {
+public class InterfaceFuncionario extends JFrame {
 
-    private JTextField nomeConta;
+    private JTextField nomeConta, complemento;
     private JComboBox<String> tipoConta;
-    private JLabel nomeLabel, tipoContaLabel;
+    private JLabel nomeLabel, tipoContaLabel, complementoLabel;
     private JPanel panelBackGround;
     private JButton botaoCriarConta;
 
     private ContaCorrente contaCorrente;
     private ContaPoupanca contaPoupanca;
     private ContaEspecial contaEspecial;
-    private int id = 6;
 
-    public InterfaceGrafica() {
+    public InterfaceFuncionario() {
         configurarJanela();
         inicializarComponentes();
         adicionarAcoesBotoes();
@@ -62,8 +61,16 @@ public class InterfaceGrafica extends JFrame {
         nomeConta.setBorder(new LineBorder(new Color(235, 94, 0), 1));
         add(nomeConta);
 
+        complemento = new JTextField();
+        complemento.setBounds(200, 110, 250, 30);
+        complemento.setFont(new Font("Cascadian", Font.BOLD, 16));
+        complemento.setBackground(Color.lightGray);
+        complemento.setForeground(Color.black);
+        complemento.setBorder(new LineBorder(new Color(235, 94, 0), 1));
+        add(complemento);
+
         tipoConta = new JComboBox<>(new String[]{"Conta Corrente", "Conta Poupança", "Conta Especial"});
-        tipoConta.setBounds(200, 110, 250, 30);
+        tipoConta.setBounds(200, 160, 250, 30);
         tipoConta.setFont(new Font("Cascadian", Font.PLAIN, 18));
         tipoConta.setBackground(Color.lightGray);
         tipoConta.setForeground(Color.black);
@@ -72,15 +79,20 @@ public class InterfaceGrafica extends JFrame {
     }
 
     private void adicionarLabels() {
-
         nomeLabel = new JLabel("Nome:");
         nomeLabel.setBounds(50, 60, 150, 30);
         nomeLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
         nomeLabel.setForeground(new Color(255, 102, 0));
         add(nomeLabel);
 
+        complementoLabel = new JLabel("Taxa:");
+        complementoLabel.setBounds(50, 110, 150, 30);
+        complementoLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
+        complementoLabel.setForeground(new Color(255, 102, 0));
+        add(complementoLabel);
+
         tipoContaLabel = new JLabel("Tipo de Conta:");
-        tipoContaLabel.setBounds(50, 110, 150, 30);
+        tipoContaLabel.setBounds(50, 160, 150, 30);
         tipoContaLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
         tipoContaLabel.setForeground(new Color(255, 102, 0));
         add(tipoContaLabel);
@@ -88,7 +100,7 @@ public class InterfaceGrafica extends JFrame {
 
     private void adicionarBotoes() {
         botaoCriarConta = new JButton("Criar Conta");
-        botaoCriarConta.setBounds(50, 170, 150, 40);
+        botaoCriarConta.setBounds(50, 220, 150, 40);
         botaoCriarConta.setFont(new Font("Cascadian", Font.PLAIN, 18));
         botaoCriarConta.setBackground(new Color(255, 102, 0));
         botaoCriarConta.setForeground(Color.white);
@@ -116,6 +128,32 @@ public class InterfaceGrafica extends JFrame {
                 botaoCriarConta.setBorder(new LineBorder(new Color(235, 94, 0), 2));
             }
         });
+
+        tipoConta.addItemListener(new java.awt.event.ItemListener() {
+            @Override
+            public void itemStateChanged(java.awt.event.ItemEvent e) {
+                atualizarLabelComplemento();
+            }
+        });
+    }
+
+    private void atualizarLabelComplemento() {
+        int tipo = tipoConta.getSelectedIndex();
+
+        switch (tipo) {
+            case 0:
+                complementoLabel.setText("Taxa:");
+                break;
+            case 1:
+                complementoLabel.setText("Rendimento:");
+                break;
+            case 2:
+                complementoLabel.setText("Limite:");
+                break;
+            default:
+                complementoLabel.setText("Taxa:");
+                break;
+        }
     }
 
     private void criarConta() {
@@ -123,36 +161,44 @@ public class InterfaceGrafica extends JFrame {
         if (nome.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, insira um nome para a conta", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
-            int tipo = tipoConta.getSelectedIndex();
-            String tipoContaString;
-            switch (tipo) {
-                case 0 -> tipoContaString = "ContaCorrente";
-                case 1 -> tipoContaString = "ContaPoupanca";
-                case 2 -> tipoContaString = "ContaEspecial";
-                default -> tipoContaString = "";
-            }
+            String complementoString = complemento.getText().trim();
+            if (complementoString.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, insira um valor de complemento", "Aviso", JOptionPane.WARNING_MESSAGE);
+            } else {
+                double valorComplemento = Double.parseDouble(complementoString);
+                int tipo = tipoConta.getSelectedIndex();
+                String tipoContaString;
 
-            try {
-                URL url = new URL("http://localhost:8080/conta/criarConta/" + tipoContaString + "/" + nome);
-                HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
-                conexaoHttp.setRequestMethod("POST");
-                int resposta = conexaoHttp.getResponseCode();
-
-                if (resposta == 200) {
-                    JOptionPane.showMessageDialog(this, "Conta criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-                    InterfaceOperacoes operacoesJanela = new InterfaceOperacoes(nome, id);
-                    operacoesJanela.setVisible(true);
-
-                    dispose();
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "Erro ao criar conta", "Erro", JOptionPane.ERROR_MESSAGE);
+                switch (tipo) {
+                    case 0:
+                        tipoContaString = "ContaCorrente";
+                        break;
+                    case 1:
+                        tipoContaString = "ContaPoupanca";
+                        break;
+                    case 2:
+                        tipoContaString = "ContaEspecial";
+                        break;
+                    default:
+                        tipoContaString = "";
+                        break;
                 }
 
-                conexaoHttp.disconnect();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro ao criar conta: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                try {
+                    URL url = new URL("http://localhost:8080/conta/criarConta/" + tipoContaString + "/" + nome + "/" + valorComplemento);
+                    HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
+                    conexaoHttp.setRequestMethod("POST");
+
+                    int resposta = conexaoHttp.getResponseCode();
+                    if (resposta == 200) {
+                        JOptionPane.showMessageDialog(this, "Conta criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Erro ao criar conta", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                    conexaoHttp.disconnect();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Erro ao criar conta: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }

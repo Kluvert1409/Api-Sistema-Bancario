@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 
 @RestController
@@ -22,24 +23,24 @@ public class ContaController {
         this.contaRepository = contaRepository;
     }
 
-    @PostMapping("/criarConta/{tipoConta}/{nomeConta}")
-    public ResponseEntity<String> criarConta(@PathVariable String tipoConta, @PathVariable String nomeConta) throws Exception {
+    @PostMapping("/criarConta/{tipoConta}/{nomeConta}/{valorComplemento}")
+    public ResponseEntity<String> criarConta(@PathVariable String tipoConta, @PathVariable String nomeConta, @PathVariable double valorComplemento
+    ) throws Exception {
         Conta conta;
 
         switch (tipoConta) {
             case "ContaCorrente":
-                conta = new ContaCorrente(nomeConta, "Conta Corrente", 1.5);
+                conta = new ContaCorrente(nomeConta, "Conta Corrente", valorComplemento);
                 break;
             case "ContaPoupanca":
-                conta = new ContaPoupanca(nomeConta, "Conta Poupanca", 0.05);
+                conta = new ContaPoupanca(nomeConta, "Conta Poupanca", valorComplemento);
                 break;
             case "ContaEspecial":
-                conta = new ContaEspecial(nomeConta, "Conta Especial", 100);
+                conta = new ContaEspecial(nomeConta, "Conta Especial", valorComplemento);
                 break;
             default:
                 throw new Exception("Tipo de conta inválido: " + tipoConta);
         }
-
         contaRepository.save(conta);
         return ResponseEntity.ok("Conta criada com sucesso! ID da conta: " + conta.getNumeroConta());
     }
