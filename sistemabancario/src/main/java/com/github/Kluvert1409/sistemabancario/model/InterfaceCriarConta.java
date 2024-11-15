@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class InterfaceFuncionario extends JFrame {
+public class InterfaceCriarConta extends JFrame {
 
     private JTextField nomeConta, complemento;
     private JComboBox<String> tipoConta;
@@ -22,7 +22,7 @@ public class InterfaceFuncionario extends JFrame {
     private ContaPoupanca contaPoupanca;
     private ContaEspecial contaEspecial;
 
-    public InterfaceFuncionario() {
+    public InterfaceCriarConta() {
         configurarJanela();
         inicializarComponentes();
         adicionarAcoesBotoes();
@@ -43,7 +43,6 @@ public class InterfaceFuncionario extends JFrame {
         adicionarBotoes();
         panelBackground();
     }
-
 
     private void panelBackground() {
         panelBackGround = new JPanel();
