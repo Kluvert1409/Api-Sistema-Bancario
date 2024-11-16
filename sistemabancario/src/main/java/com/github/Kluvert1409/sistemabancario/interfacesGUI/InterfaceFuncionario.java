@@ -10,9 +10,9 @@ import java.awt.event.MouseEvent;
 
 public class InterfaceFuncionario extends JFrame {
 
-    private JLabel texto, criarContaLabel, deletarContaLabel, atualizarContaLabel;
+    private JLabel texto, criarContaLabel, deletarContaLabel, atualizarContaLabel, consultarContasLabel;
     private JPanel panelBackGround;
-    private JButton botaoCriarConta, botaoDeletarConta, botaoAtualizarConta, botaoVoltar;
+    private JButton botaoCriarConta, botaoDeletarConta, botaoAtualizarConta, botaoConsultarContas, botaoVoltar;
     private ImageIcon imagemCriar, imagemDeletar, imagemAtualizar, imagemVoltar;
 
     public InterfaceFuncionario() {
@@ -64,6 +64,12 @@ public class InterfaceFuncionario extends JFrame {
         atualizarContaLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
         atualizarContaLabel.setForeground(new Color(255, 102, 0));
         add(atualizarContaLabel);
+
+        consultarContasLabel = new JLabel("Consultar");
+        consultarContasLabel.setBounds(55, 330, 150, 30);
+        consultarContasLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
+        consultarContasLabel.setForeground(new Color(255, 102, 0));
+        add(consultarContasLabel);
     }
 
     private void adicionarBotoes() {
@@ -96,6 +102,16 @@ public class InterfaceFuncionario extends JFrame {
         botaoAtualizarConta.setIcon(imagemAtualizar);
         botaoAtualizarConta.setBorder(new LineBorder(new Color(235, 94, 0), 2));
         add(botaoAtualizarConta);
+
+        botaoConsultarContas = new JButton();
+        botaoConsultarContas.setBounds(45, 265, 105, 60);
+        botaoConsultarContas.setBackground(new Color(255, 102, 0));
+        botaoConsultarContas.setForeground(Color.white);
+        botaoConsultarContas.setFocusPainted(false);
+        imagemCriar = new ImageIcon(getClass().getResource("/imagens/search_26px.png"));
+        botaoConsultarContas.setIcon(imagemCriar);
+        botaoConsultarContas.setBorder(new LineBorder(new Color(235, 94, 0), 2));
+        add(botaoConsultarContas);
 
         botaoVoltar = new JButton();
         botaoVoltar.setBounds(50, 450, 80, 35);
@@ -167,6 +183,25 @@ public class InterfaceFuncionario extends JFrame {
             }
         });
 
+        botaoConsultarContas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                encaminharConsultar();
+            }
+        });
+
+        botaoConsultarContas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botaoConsultarContas.setBorder(new LineBorder(new Color(255, 229, 204), 2));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botaoConsultarContas.setBorder(new LineBorder(new Color(235, 94, 0), 2));
+            }
+        });
+
         botaoVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -201,6 +236,12 @@ public class InterfaceFuncionario extends JFrame {
 
     private void encaminharAtualizarConta() {
         InterfaceAtualizarConta novaJanela = new InterfaceAtualizarConta();
+        novaJanela.setVisible(true);
+        dispose();
+    }
+
+    private void encaminharConsultar() {
+        InterfaceConsultarConta novaJanela = new InterfaceConsultarConta();
         novaJanela.setVisible(true);
         dispose();
     }
