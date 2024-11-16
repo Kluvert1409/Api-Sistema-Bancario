@@ -16,19 +16,20 @@ public class InterfaceLoginUsuario extends JFrame {
     private JTextField campoId;
     private JButton botaoConfirmar, botaoVoltar;
     private JPanel panelBackGround;
-    private JLabel labelId;
+    private JLabel texto;
     private ImageIcon imagemVoltar;
 
     public InterfaceLoginUsuario() {
         configurarJanela();
         inicializarComponentes();
+        adicionarBotoes();
         adicionarAcoes();
         panelBackground();
     }
 
     private void configurarJanela() {
         setTitle("Login do Usuário");
-        setSize(400, 400);
+        setSize(520, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -38,35 +39,38 @@ public class InterfaceLoginUsuario extends JFrame {
     private void panelBackground() {
         panelBackGround = new JPanel();
         panelBackGround.setBackground(new Color(32, 32, 32));
-        panelBackGround.setBounds(0, 0, 400, 400);
+        panelBackGround.setBounds(0, 0, 520, 400);
         add(panelBackGround);
     }
 
     private void inicializarComponentes() {
-        labelId = new JLabel("Digite o número da conta:");
-        labelId.setBounds(85, 25, 300, 20);
-        labelId.setFont(new Font("Cascadian", Font.BOLD, 18));
-        labelId.setForeground(new Color(255, 102, 0));
-        add(labelId);
+        texto = new JLabel("Digite o número da conta:");
+        texto.setBounds(50, 60, 500, 30);
+        texto.setFont(new Font("Cascadian", Font.BOLD, 18));
+        texto.setForeground(new Color(255, 102, 0));
+        add(texto);
 
         campoId = new JTextField();
-        campoId.setBounds(80, 60, 230, 30);
+        campoId.setBounds(50, 110, 200, 40);
         campoId.setFont(new Font("Cascadian", Font.BOLD, 16));
         campoId.setBackground(Color.lightGray);
         campoId.setForeground(Color.black);
+        campoId.setBorder(new LineBorder(new Color(235, 94, 0), 1));
         add(campoId);
+    }
 
+    private void adicionarBotoes() {
         botaoConfirmar = new JButton("Confirmar");
-        botaoConfirmar.setBounds(125, 105, 150, 30);
-        botaoConfirmar.setFont(new Font("Cascadian", Font.PLAIN, 18));
+        botaoConfirmar.setBounds(290, 110, 150, 40);
+        botaoConfirmar.setFont(new Font("Cascadian", Font.BOLD, 18));
         botaoConfirmar.setBackground(new Color(255, 102, 0));
         botaoConfirmar.setForeground(Color.white);
-        botaoConfirmar.setBorder(new LineBorder(new Color(235, 94, 0), 2));
+        botaoConfirmar.setBorder(new LineBorder(new Color(235, 94, 0), 1));
         botaoConfirmar.setFocusPainted(false);
         add(botaoConfirmar);
 
         botaoVoltar = new JButton();
-        botaoVoltar.setBounds(50, 300, 80, 35);
+        botaoVoltar.setBounds(50, 275, 80, 35);
         botaoVoltar.setFont(new Font("Cascadian", Font.BOLD, 18));
         botaoVoltar.setBackground(new Color(255, 102, 0));
         botaoVoltar.setForeground(Color.white);
@@ -89,7 +93,7 @@ public class InterfaceLoginUsuario extends JFrame {
                         int id = Integer.parseInt(idTexto);
                         processarConta(id);
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(InterfaceLoginUsuario.this, "ID inválido. Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(InterfaceLoginUsuario.this, "Id inválido. Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }

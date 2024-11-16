@@ -57,15 +57,40 @@ public class ContaController {
         return ResponseEntity.status(HttpStatus.OK).body("Conta apagada com sucesso");
     }
 
-
-    @PutMapping("/atualizarConta/{id}")
-    public void atualizarConta(@PathVariable("id") int id, @RequestParam("nomeConta") String nomeConta) {
+    @PutMapping("/atualizarConta/{id}/{novoTipo}/{complemento}/{nomeConta}")
+    public ResponseEntity<String> atualizarConta(@PathVariable("id") int id, @PathVariable("novoTipo") String novoTipo, @PathVariable("complemento") double complemento, @PathVariable("nomeConta") String nomeConta) {
         Optional<Conta> contaOptional = contaRepository.findById(id);
-        if (contaOptional.isPresent()) {
-            Conta contaExistente = contaOptional.get();
 
-            contaExistente.setNomeConta(nomeConta);
-            contaRepository.save(contaExistente);
+        if (!contaOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Conta não encontrada.");
+        }
+
+        Conta contaExistente = contaOptional.get();
+        double saldoAtual = contaExistente.getSaldoConta();
+
+        try {
+            contaRepository.deleteById(id);
+
+            Conta novaConta;
+            switch (novoTipo) {
+                case "ContaCorrente":
+                    novaConta = new ContaCorrente(nomeConta, "Conta Corrente", complemento);
+                    break;
+                case "ContaPoupanca":
+                    novaConta = new ContaPoupanca(nomeConta, "Conta Poupanca", complemento);
+                    break;
+                case "ContaEspecial":
+                    novaConta = new ContaEspecial(nomeConta, "Conta Especial", complemento);
+                    break;
+                default:
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tipo de conta inválido.");
+            }
+            novaConta.setSaldoConta(saldoAtual);
+            contaRepository.save(novaConta);
+
+            return ResponseEntity.ok("Conta atualizada com sucesso!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar a conta: " + e.getMessage());
         }
     }
 

@@ -109,7 +109,7 @@ public class InterfaceCriarConta extends JFrame {
         add(botaoCriarConta);
 
         botaoVoltar = new JButton();
-        botaoVoltar.setBounds(50, 345, 80, 35);
+        botaoVoltar.setBounds(50, 450, 80, 35);
         botaoVoltar.setFont(new Font("Cascadian", Font.BOLD, 18));
         botaoVoltar.setBackground(new Color(255, 102, 0));
         botaoVoltar.setForeground(Color.white);
