@@ -17,7 +17,7 @@ public class ContaEspecial extends Conta {
         this.limite = limite;
     }
 
-    public ContaEspecial(String nomeConta, String tipoConta, double saldoConta, double taxa) {
+    public ContaEspecial(String nomeConta, String tipoConta, double saldoConta, double limite) {
         super(nomeConta, tipoConta, saldoConta);
         this.limite = limite;
     }
@@ -64,7 +64,7 @@ public class ContaEspecial extends Conta {
 
     @Override
     public String getRetornoSimples() {
-        return (getNomeConta() + ";" + getNumeroConta() + ";" + getSaldoConta() + ";" + getLimite());
+        return (getNumeroConta() + ";" + getSaldoConta() + ";" + getNomeConta() + ";" + getTipoConta() + ";" + getLimite());
     }
 
     @Override

@@ -17,7 +17,7 @@ public class ContaPoupanca extends Conta {
         this.rendimento = rendimento;
     }
 
-    public ContaPoupanca(String nomeConta, String tipoConta, double saldoConta, double taxa) {
+    public ContaPoupanca(String nomeConta, String tipoConta, double saldoConta, double rendimento) {
         super(nomeConta, tipoConta, saldoConta);
         this.rendimento = rendimento;
     }
@@ -72,7 +72,7 @@ public class ContaPoupanca extends Conta {
 
     @Override
     public String getRetornoSimples() {
-            return (getNomeConta() + ";" + getNumeroConta() + ";" + getSaldoConta() + ";" + getRendimento());
+        return (getNumeroConta() + ";" + getSaldoConta() + ";" + getNomeConta() + ";" + getTipoConta() + ";" + getRendimento());
     }
 
     @Override

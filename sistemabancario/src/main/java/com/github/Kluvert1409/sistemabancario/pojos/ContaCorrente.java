@@ -64,7 +64,7 @@ public class ContaCorrente extends Conta {
 
     @Override
     public String getRetornoSimples() {
-        return (getNomeConta() + ";" + getNumeroConta() + ";" + getSaldoConta() + ";" + getTaxa());
+        return (getNumeroConta() + ";" + getSaldoConta() + ";" + getNomeConta() + ";" + getTipoConta() + ";" + getTaxa());
     }
 
     @Override

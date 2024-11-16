@@ -146,8 +146,8 @@ public class InterfaceLoginUsuario extends JFrame {
 
                 if (!"Conta não encontrada".equals(dadosConta)) {
                     String[] partes = dadosConta.split(";");
-                    String nome = partes[0];
-                    int idConta = Integer.parseInt(partes[1]);
+                    String nome = partes[2];
+                    int idConta = Integer.parseInt(partes[0]);
 
                     redirecionarParaOperacoes(nome, idConta);
                 } else {
