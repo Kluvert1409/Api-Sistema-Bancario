@@ -23,15 +23,6 @@ public class ContaController {
         this.contaRepository = contaRepository;
     }
 
-    public long contarTotalContas() {
-        return contaRepository.count();
-    }
-
-    @GetMapping("/conta/quantidadeTotal")
-    public long obterQuantidadeTotalContas() {
-        return contarTotalContas(); // Retorna a quantidade total de contas no banco
-    }
-
     @PostMapping("/criarConta/{tipoConta}/{nomeConta}/{valorComplemento}")
     public ResponseEntity<String> criarConta(@PathVariable String tipoConta, @PathVariable String nomeConta, @PathVariable double valorComplemento
     ) throws Exception {
