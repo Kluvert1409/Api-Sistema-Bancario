@@ -1,4 +1,4 @@
-package com.github.Kluvert1409.sistemabancario.model;
+package com.github.Kluvert1409.sistemabancario.interfacesGUI;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-public class InterfaceOperacoes extends JFrame {
+public class InterfaceAreaUsuario extends JFrame {
 
     private JTextField valor;
     private JLabel nomeTopo, idTopo, valorLabel, saque, deposito, consulta, fotoUsuario;
@@ -23,7 +23,7 @@ public class InterfaceOperacoes extends JFrame {
     private int idConta;
     private String nomeConta;
 
-    public InterfaceOperacoes(String nomeConta, int idConta) {
+    public InterfaceAreaUsuario(String nomeConta, int idConta) {
         this.nomeConta = nomeConta;
         this.idConta = idConta;
         configurarJanela();

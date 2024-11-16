@@ -1,4 +1,4 @@
-package com.github.Kluvert1409.sistemabancario.model;
+package com.github.Kluvert1409.sistemabancario.interfacesGUI;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -10,20 +10,16 @@ import java.awt.event.MouseEvent;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class InterfaceCriarConta extends JFrame {
+public class InterfaceAtualizarConta extends JFrame {
 
-    private JTextField nomeConta, complemento;
+    private JTextField numeroConta, nomeConta, complemento;
+    private JLabel numeroLabel, nomeLabel, complementoLabel, tipoContaLabel;
+    private JButton botaoAtualizarConta, botaoVoltar;
     private JComboBox<String> tipoConta;
-    private JLabel nomeLabel, tipoContaLabel, complementoLabel;
     private JPanel panelBackGround;
-    private JButton botaoCriarConta, botaoVoltar;
     private ImageIcon imagemVoltar;
 
-    private ContaCorrente contaCorrente;
-    private ContaPoupanca contaPoupanca;
-    private ContaEspecial contaEspecial;
-
-    public InterfaceCriarConta() {
+    public InterfaceAtualizarConta() {
         configurarJanela();
         inicializarComponentes();
         adicionarAcoesBotoes();
@@ -53,8 +49,17 @@ public class InterfaceCriarConta extends JFrame {
     }
 
     private void adicionarCamposTexto() {
+
+        numeroConta = new JTextField();
+        numeroConta.setBounds(200, 60, 250, 30);
+        numeroConta.setFont(new Font("Cascadian", Font.BOLD, 16));
+        numeroConta.setBackground(Color.lightGray);
+        numeroConta.setForeground(Color.black);
+        numeroConta.setBorder(new LineBorder(new Color(235, 94, 0), 1));
+        add(numeroConta);
+
         nomeConta = new JTextField();
-        nomeConta.setBounds(200, 60, 250, 30);
+        nomeConta.setBounds(200, 110, 250, 30);
         nomeConta.setFont(new Font("Cascadian", Font.BOLD, 16));
         nomeConta.setBackground(Color.lightGray);
         nomeConta.setForeground(Color.black);
@@ -62,7 +67,7 @@ public class InterfaceCriarConta extends JFrame {
         add(nomeConta);
 
         complemento = new JTextField();
-        complemento.setBounds(200, 110, 250, 30);
+        complemento.setBounds(200, 160, 250, 30);
         complemento.setFont(new Font("Cascadian", Font.BOLD, 16));
         complemento.setBackground(Color.lightGray);
         complemento.setForeground(Color.black);
@@ -70,7 +75,7 @@ public class InterfaceCriarConta extends JFrame {
         add(complemento);
 
         tipoConta = new JComboBox<>(new String[]{"Conta Corrente", "Conta Poupança", "Conta Especial"});
-        tipoConta.setBounds(200, 160, 250, 30);
+        tipoConta.setBounds(200, 210, 250, 30);
         tipoConta.setFont(new Font("Cascadian", Font.PLAIN, 18));
         tipoConta.setBackground(Color.lightGray);
         tipoConta.setForeground(Color.black);
@@ -79,34 +84,42 @@ public class InterfaceCriarConta extends JFrame {
     }
 
     private void adicionarLabels() {
+
+        numeroLabel = new JLabel("N° da conta:");
+        numeroLabel.setBounds(50, 60, 150, 30);
+        numeroLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
+        numeroLabel.setForeground(new Color(255, 102, 0));
+        add(numeroLabel);
+
         nomeLabel = new JLabel("Nome:");
-        nomeLabel.setBounds(50, 60, 150, 30);
+        nomeLabel.setBounds(50, 110, 150, 30);
         nomeLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
         nomeLabel.setForeground(new Color(255, 102, 0));
         add(nomeLabel);
 
         complementoLabel = new JLabel("Taxa:");
-        complementoLabel.setBounds(50, 110, 150, 30);
+        complementoLabel.setBounds(50, 160, 150, 30);
         complementoLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
         complementoLabel.setForeground(new Color(255, 102, 0));
         add(complementoLabel);
 
         tipoContaLabel = new JLabel("Tipo de Conta:");
-        tipoContaLabel.setBounds(50, 160, 150, 30);
+        tipoContaLabel.setBounds(50, 210, 150, 30);
         tipoContaLabel.setFont(new Font("Cascadian", Font.BOLD, 18));
         tipoContaLabel.setForeground(new Color(255, 102, 0));
         add(tipoContaLabel);
     }
 
     private void adicionarBotoes() {
-        botaoCriarConta = new JButton("Criar Conta");
-        botaoCriarConta.setBounds(50, 220, 150, 40);
-        botaoCriarConta.setFont(new Font("Cascadian", Font.BOLD, 18));
-        botaoCriarConta.setBackground(new Color(255, 102, 0));
-        botaoCriarConta.setForeground(Color.white);
-        botaoCriarConta.setBorder(new LineBorder(new Color(235, 94, 0), 1));
-        botaoCriarConta.setFocusPainted(false);
-        add(botaoCriarConta);
+
+        botaoAtualizarConta = new JButton("Atualizar Conta");
+        botaoAtualizarConta.setBounds(50, 260, 150, 40);
+        botaoAtualizarConta.setFont(new Font("Cascadian", Font.BOLD, 18));
+        botaoAtualizarConta.setBackground(new Color(255, 102, 0));
+        botaoAtualizarConta.setForeground(Color.white);
+        botaoAtualizarConta.setBorder(new LineBorder(new Color(235, 94, 0), 1));
+        botaoAtualizarConta.setFocusPainted(false);
+        add(botaoAtualizarConta);
 
         botaoVoltar = new JButton();
         botaoVoltar.setBounds(50, 450, 80, 35);
@@ -121,22 +134,22 @@ public class InterfaceCriarConta extends JFrame {
     }
 
     private void adicionarAcoesBotoes() {
-        botaoCriarConta.addActionListener(new ActionListener() {
+        botaoAtualizarConta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                criarConta();
+                atualizar();
             }
         });
 
-        botaoCriarConta.addMouseListener(new MouseAdapter() {
+        botaoAtualizarConta.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                botaoCriarConta.setBorder(new LineBorder(new Color(255, 229, 204), 2));
+                botaoAtualizarConta.setBorder(new LineBorder(new Color(255, 229, 204), 2));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                botaoCriarConta.setBorder(new LineBorder(new Color(235, 94, 0), 2));
+                botaoAtualizarConta.setBorder(new LineBorder(new Color(235, 94, 0), 2));
             }
         });
 
@@ -186,19 +199,21 @@ public class InterfaceCriarConta extends JFrame {
         }
     }
 
-    private void criarConta() {
+    private void atualizar() {
+        String numeroString = numeroConta.getText().trim();
         String nome = nomeConta.getText().trim();
-        if (nome.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, insira um nome para a conta", "Aviso", JOptionPane.WARNING_MESSAGE);
+
+        if (numeroString.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, insira um número de conta", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
             String complementoString = complemento.getText().trim();
             if (complementoString.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Por favor, insira um valor de complemento", "Aviso", JOptionPane.WARNING_MESSAGE);
             } else {
                 double valorComplemento = Double.parseDouble(complementoString);
+
                 int tipo = tipoConta.getSelectedIndex();
                 String tipoContaString;
-
                 switch (tipo) {
                     case 0:
                         tipoContaString = "ContaCorrente";
@@ -215,19 +230,24 @@ public class InterfaceCriarConta extends JFrame {
                 }
 
                 try {
-                    URL url = new URL("http://localhost:8080/conta/criarConta/" + tipoContaString + "/" + nome + "/" + valorComplemento);
-                    HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
-                    conexaoHttp.setRequestMethod("POST");
+                    int id = Integer.parseInt(numeroString);
+                    try {
+                        URL url = new URL("http://localhost:8080/conta/atualizarConta/" + id + "/" + tipoContaString + "/" + valorComplemento + "/" + nome);
+                        HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
+                        conexaoHttp.setRequestMethod("PUT");
+                        int resposta = conexaoHttp.getResponseCode();
 
-                    int resposta = conexaoHttp.getResponseCode();
-                    if (resposta == 200) {
-                        JOptionPane.showMessageDialog(this, "Conta criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Erro ao criar conta", "Erro", JOptionPane.ERROR_MESSAGE);
+                        if (resposta == 200) {
+                            JOptionPane.showMessageDialog(this, "Conta atualizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Erro ao atualizar a conta", "Erro", JOptionPane.ERROR_MESSAGE);
+                        }
+                        conexaoHttp.disconnect();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Erro ao tentar atualizar a conta: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     }
-                    conexaoHttp.disconnect();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Erro ao criar conta: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Por favor, insira somente números no campo número conta", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }

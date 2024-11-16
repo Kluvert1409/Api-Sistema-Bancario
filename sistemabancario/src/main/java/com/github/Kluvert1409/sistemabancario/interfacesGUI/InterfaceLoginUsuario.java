@@ -1,4 +1,4 @@
-package com.github.Kluvert1409.sistemabancario.model;
+package com.github.Kluvert1409.sistemabancario.interfacesGUI;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -163,7 +163,7 @@ public class InterfaceLoginUsuario extends JFrame {
     }
 
     private void redirecionarParaOperacoes(String nome, int id) {
-        InterfaceOperacoes novaJanela = new InterfaceOperacoes(nome, id);
+        InterfaceAreaUsuario novaJanela = new InterfaceAreaUsuario(nome, id);
         novaJanela.setVisible(true);
         dispose();
     }

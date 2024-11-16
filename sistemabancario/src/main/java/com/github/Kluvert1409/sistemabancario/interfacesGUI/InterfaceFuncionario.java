@@ -1,4 +1,4 @@
-package com.github.Kluvert1409.sistemabancario.model;
+package com.github.Kluvert1409.sistemabancario.interfacesGUI;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -200,7 +200,7 @@ public class InterfaceFuncionario extends JFrame {
     }
 
     private void encaminharAtualizarConta() {
-        InterfaceAtualizar novaJanela = new InterfaceAtualizar();
+        InterfaceAtualizarConta novaJanela = new InterfaceAtualizarConta();
         novaJanela.setVisible(true);
         dispose();
     }

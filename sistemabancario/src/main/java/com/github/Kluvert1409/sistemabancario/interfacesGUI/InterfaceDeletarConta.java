@@ -1,4 +1,4 @@
-package com.github.Kluvert1409.sistemabancario.model;
+package com.github.Kluvert1409.sistemabancario.interfacesGUI;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

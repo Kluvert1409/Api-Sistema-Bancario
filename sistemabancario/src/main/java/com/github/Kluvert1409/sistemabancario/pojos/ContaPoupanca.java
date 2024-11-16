@@ -1,4 +1,4 @@
-package com.github.Kluvert1409.sistemabancario.model;
+package com.github.Kluvert1409.sistemabancario.pojos;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

@@ -1,9 +1,9 @@
 package com.github.Kluvert1409.sistemabancario.dataLoader;
 
-import com.github.Kluvert1409.sistemabancario.model.Conta;
-import com.github.Kluvert1409.sistemabancario.model.ContaCorrente;
-import com.github.Kluvert1409.sistemabancario.model.ContaEspecial;
-import com.github.Kluvert1409.sistemabancario.model.ContaPoupanca;
+import com.github.Kluvert1409.sistemabancario.pojos.Conta;
+import com.github.Kluvert1409.sistemabancario.pojos.ContaCorrente;
+import com.github.Kluvert1409.sistemabancario.pojos.ContaEspecial;
+import com.github.Kluvert1409.sistemabancario.pojos.ContaPoupanca;
 import com.github.Kluvert1409.sistemabancario.repository.ContaRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

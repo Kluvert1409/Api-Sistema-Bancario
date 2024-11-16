@@ -1,54 +1,54 @@
-package com.github.Kluvert1409.sistemabancario.model;
+package com.github.Kluvert1409.sistemabancario.pojos;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "conta_especial")
-public class ContaEspecial extends Conta {
+@Table(name = "conta_corrente")
+public class ContaCorrente extends Conta {
 
-    private double limite;
+    private double taxa;
 
-    public ContaEspecial() {
+    public ContaCorrente() {
     }
 
-    public ContaEspecial(String nomeConta, String tipoConta, double limite) {
+    public ContaCorrente(String nomeConta, String tipoConta, double taxa) {
         super(nomeConta, tipoConta);
-        this.limite = limite;
+        this.taxa = taxa;
     }
 
-    public ContaEspecial(String nomeConta, String tipoConta, double saldoConta, double taxa) {
+    public ContaCorrente(String nomeConta, String tipoConta, double saldoConta, double taxa) {
         super(nomeConta, tipoConta, saldoConta);
-        this.limite = limite;
+        this.taxa = taxa;
     }
 
-    public ContaEspecial(int numeroConta, String nomeConta, String tipoConta, double limite) {
+    public ContaCorrente(int numeroConta, String nomeConta, String tipoConta, double taxa) {
         super(numeroConta, nomeConta, tipoConta);
-        this.limite = limite;
+        this.taxa = taxa;
     }
 
-    public ContaEspecial(int numeroConta, String nomeConta, String tipoConta, double saldoConta, double limite) {
+    public ContaCorrente(int numeroConta, String nomeConta, String tipoConta, double saldoConta, double taxa) {
         super(numeroConta, nomeConta, tipoConta, saldoConta);
-        this.limite = limite;
+        this.taxa = taxa;
     }
 
-    public double getLimite() {
-        return limite;
+    public double getTaxa() {
+        return taxa;
     }
 
-    public void setLimite(double limite) {
-        this.limite = limite;
+    public void setTaxa(double taxa) {
+        this.taxa = taxa;
     }
 
     @Override
     public String setSacar(double valorSaque) throws Exception {
         if (valorSaque <= 0) {
             throw new Exception("Valor de saque inválido");
-        } else if (valorSaque > getSaldoConta() + getLimite()) {
+        } else if (getSaldoConta() < valorSaque) {
             throw new Exception("Saldo insuficiente para saque");
         } else {
-            setSaldoConta(getSaldoConta() - valorSaque);
-            return ("Saque realizado com sucesso");
+            setSaldoConta(getSaldoConta() - (valorSaque + taxa));
+            return "Saque realizado com sucesso";
         }
     }
 
@@ -64,7 +64,7 @@ public class ContaEspecial extends Conta {
 
     @Override
     public String getRetornoSimples() {
-        return (getNomeConta() + ";" + getNumeroConta() + ";" + getSaldoConta() + ";" + getLimite());
+        return (getNomeConta() + ";" + getNumeroConta() + ";" + getSaldoConta() + ";" + getTaxa());
     }
 
     @Override
@@ -72,6 +72,6 @@ public class ContaEspecial extends Conta {
         return ("Nome do cliente: " + getNomeConta() + "\n"
                 + "Numero da conta: " + getNumeroConta() + "\n"
                 + "Saldo: " + getSaldoConta() + "\n"
-                + "Limite adicional: " + getLimite());
+                + "Taxa por operação: " + getTaxa());
     }
 }
