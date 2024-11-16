@@ -1,4 +1,6 @@
-package com.github.Kluvert1409.sistemabancario.interfacesGUI;
+package com.github.Kluvert1409.sistemabancario;
+
+import com.github.Kluvert1409.sistemabancario.interfacesGUI.InterfacePrimaria;
 
 public class SistemaBancario {
 

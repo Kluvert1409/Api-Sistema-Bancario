@@ -97,8 +97,10 @@ public class InterfaceConsultarConta extends JFrame {
 
         try {
             int id = 1;
-            boolean dadosExistem = true;
-            while (dadosExistem) {
+            int tentativas = 0;
+            int tentativaMaxima = 100;
+
+            while (tentativas < tentativaMaxima) {
                 URL url = new URL("http://localhost:8080/conta/retornarDadosSimples/" + id);
                 HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
                 conexaoHttp.setRequestMethod("GET");
@@ -111,15 +113,16 @@ public class InterfaceConsultarConta extends JFrame {
                             String[] dadosConta = resposta.split(";");
                             model.addRow(dadosConta);
                         } else {
-                            dadosExistem = false;
+                            tentativas++;
                         }
                     } catch (Exception e) {
                         break;
                     }
-                } else {
-                    dadosExistem = false;
                 }
                 id++;
+            }
+            if (tentativas > tentativaMaxima) {
+                JOptionPane.showMessageDialog(this, "Não foi possível carregar todos os dados. O número máximo de tentativas foi atingido.", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar os dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
