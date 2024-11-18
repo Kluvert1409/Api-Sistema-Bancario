@@ -197,7 +197,7 @@ public class InterfaceAreaUsuario extends JFrame {
         botaoMostrarsaldo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mostraSaldo();
+                mostrarSaldo();
             }
         });
 
@@ -254,6 +254,10 @@ public class InterfaceAreaUsuario extends JFrame {
 
                 if (resposta == 200) {
                     JOptionPane.showMessageDialog(this, "Depósito realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    if (saldoMostrado == true) {
+                        saldoMostrado = false;
+                        mostrarSaldo();
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "Erro ao realizar depósito", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
@@ -279,6 +283,10 @@ public class InterfaceAreaUsuario extends JFrame {
 
                 if (resposta == 200) {
                     JOptionPane.showMessageDialog(this, "Saque realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    if (saldoMostrado == true) {
+                        saldoMostrado = false;
+                        mostrarSaldo();
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "Erro ao realizar saque", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
@@ -311,7 +319,7 @@ public class InterfaceAreaUsuario extends JFrame {
         }
     }
 
-    private void mostraSaldo() {
+    private void mostrarSaldo() {
         try {
             url = new URL("http://localhost:8080/conta/retornarDadosSimples/" + idConta);
             conexaoHttp = (HttpURLConnection) url.openConnection();
@@ -336,7 +344,7 @@ public class InterfaceAreaUsuario extends JFrame {
                     saldoAtual.setBounds(110, 175, 150, 40);
                     botaoMostrarsaldo.setIcon(new ImageIcon(getClass().getResource("/imagens/eyelashes_2d_50px.png")));
                     saldoMostrado = false;
-                        }
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao buscar saldo. Código: " + resposta, "Erro", JOptionPane.ERROR_MESSAGE);
             }
