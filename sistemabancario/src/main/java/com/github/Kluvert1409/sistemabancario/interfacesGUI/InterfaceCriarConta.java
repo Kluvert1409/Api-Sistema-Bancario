@@ -23,6 +23,8 @@ public class InterfaceCriarConta extends JFrame {
     private JButton botaoCriarConta, botaoVoltar;
     private ImageIcon imagemVoltar;
 
+    private URL url;
+    private HttpURLConnection conexaoHttp;
     private ContaCorrente contaCorrente;
     private ContaPoupanca contaPoupanca;
     private ContaEspecial contaEspecial;
@@ -219,8 +221,8 @@ public class InterfaceCriarConta extends JFrame {
                 }
 
                 try {
-                    URL url = new URL("http://localhost:8080/conta/criarConta/" + tipoContaString + "/" + nome + "/" + valorComplemento);
-                    HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
+                    url = new URL("http://localhost:8080/conta/criarConta/" + tipoContaString + "/" + nome + "/" + valorComplemento);
+                    conexaoHttp = (HttpURLConnection) url.openConnection();
                     conexaoHttp.setRequestMethod("POST");
 
                     int resposta = conexaoHttp.getResponseCode();

@@ -19,6 +19,9 @@ public class InterfaceConsultarConta extends JFrame {
     private JTable tabelaContas;
     private JScrollPane scrollPane;
 
+    private URL url;
+    private HttpURLConnection conexaoHttp;
+
     public InterfaceConsultarConta() {
         configurarJanela();
         adicionarTabela();
@@ -101,8 +104,8 @@ public class InterfaceConsultarConta extends JFrame {
             int tentativaMaxima = 100;
 
             while (tentativas < tentativaMaxima) {
-                URL url = new URL("http://localhost:8080/conta/retornarDadosSimples/" + id);
-                HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
+                url = new URL("http://localhost:8080/conta/retornarDadosSimples/" + id);
+                conexaoHttp = (HttpURLConnection) url.openConnection();
                 conexaoHttp.setRequestMethod("GET");
                 int status = conexaoHttp.getResponseCode();
 

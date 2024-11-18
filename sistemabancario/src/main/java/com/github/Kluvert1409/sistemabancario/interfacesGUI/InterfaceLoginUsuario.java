@@ -19,6 +19,9 @@ public class InterfaceLoginUsuario extends JFrame {
     private JLabel texto;
     private ImageIcon imagemVoltar;
 
+    private URL url;
+    private HttpURLConnection conexaoHttp;
+
     public InterfaceLoginUsuario() {
         configurarJanela();
         inicializarComponentes();
@@ -87,13 +90,13 @@ public class InterfaceLoginUsuario extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String idTexto = campoId.getText().trim();
                 if (idTexto.isEmpty()) {
-                    JOptionPane.showMessageDialog(InterfaceLoginUsuario.this, "Por favor, insira um ID.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(InterfaceLoginUsuario.this, "Por favor, insira um número de conta válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 } else {
                     try {
                         int id = Integer.parseInt(idTexto);
                         processarConta(id);
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(InterfaceLoginUsuario.this, "Id inválido. Insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(InterfaceLoginUsuario.this, "Por favor, insira um número.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -133,8 +136,8 @@ public class InterfaceLoginUsuario extends JFrame {
 
     private void processarConta(int id) {
         try {
-            URL url = new URL("http://localhost:8080/conta/retornarDadosSimples/" + id);
-            HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
+            url = new URL("http://localhost:8080/conta/retornarDadosSimples/" + id);
+            conexaoHttp = (HttpURLConnection) url.openConnection();
             conexaoHttp.setRequestMethod("GET");
 
             int resposta = conexaoHttp.getResponseCode();
@@ -151,7 +154,7 @@ public class InterfaceLoginUsuario extends JFrame {
 
                     redirecionarParaOperacoes(nome, idConta);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Número da conta não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Número de conta não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao verificar o número. Código: " + resposta, "Erro", JOptionPane.ERROR_MESSAGE);

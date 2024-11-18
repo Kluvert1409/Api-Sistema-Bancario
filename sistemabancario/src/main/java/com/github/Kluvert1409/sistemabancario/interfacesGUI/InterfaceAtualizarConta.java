@@ -19,6 +19,9 @@ public class InterfaceAtualizarConta extends JFrame {
     private JPanel panelBackGround;
     private ImageIcon imagemVoltar;
 
+    private URL url;
+    private HttpURLConnection conexaoHttp;
+
     public InterfaceAtualizarConta() {
         configurarJanela();
         inicializarComponentes();
@@ -232,8 +235,8 @@ public class InterfaceAtualizarConta extends JFrame {
                 try {
                     int id = Integer.parseInt(numeroString);
                     try {
-                        URL url = new URL("http://localhost:8080/conta/atualizarConta/" + id + "/" + tipoContaString + "/" + valorComplemento + "/" + nome);
-                        HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
+                        url = new URL("http://localhost:8080/conta/atualizarConta/" + id + "/" + tipoContaString + "/" + valorComplemento + "/" + nome);
+                        conexaoHttp = (HttpURLConnection) url.openConnection();
                         conexaoHttp.setRequestMethod("PUT");
                         int resposta = conexaoHttp.getResponseCode();
 

@@ -18,6 +18,9 @@ public class InterfaceDeletarConta extends JFrame {
     private JPanel panelBackGround;
     private ImageIcon imagemVoltar;
 
+    private URL url;
+    private HttpURLConnection conexaoHttp;
+
     public InterfaceDeletarConta() {
         configurarJanela();
         inicializarComponentes();
@@ -135,8 +138,8 @@ public class InterfaceDeletarConta extends JFrame {
             try {
                 int id = Integer.parseInt(numeroString);
                 try {
-                    URL url = new URL("http://localhost:8080/conta/apagarConta/" + id);
-                    HttpURLConnection conexaoHttp = (HttpURLConnection) url.openConnection();
+                    url = new URL("http://localhost:8080/conta/apagarConta/" + id);
+                    conexaoHttp = (HttpURLConnection) url.openConnection();
                     conexaoHttp.setRequestMethod("DELETE");
                     int resposta = conexaoHttp.getResponseCode();
 
