@@ -29,7 +29,6 @@ public class InterfacePrimaria extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setLayout(null);
-        setVisible(true);
     }
 
     private void panelBackground() {
