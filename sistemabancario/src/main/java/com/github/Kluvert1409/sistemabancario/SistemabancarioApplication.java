@@ -11,14 +11,11 @@ import java.awt.GraphicsEnvironment;
 @SpringBootApplication
 public class SistemabancarioApplication {
 
+    private static InterfacePrimaria janela = new InterfacePrimaria();
+
     public static void main(String[] args) {
         SpringApplication.run(SistemabancarioApplication.class, args);
 
-        if (!GraphicsEnvironment.isHeadless()) {
-            InterfacePrimaria janela = new InterfacePrimaria();
             janela.setVisible(true);
-        } else {
-            System.out.println("Modo headless detectado. Interface gráfica não será inicializada.");
-        }
     }
 }
