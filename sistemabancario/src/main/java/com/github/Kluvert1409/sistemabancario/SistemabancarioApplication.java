@@ -10,7 +10,6 @@ import java.awt.GraphicsEnvironment;
  */
 @SpringBootApplication
 public class SistemabancarioApplication {
-
     private static InterfacePrimaria janela = new InterfacePrimaria();
 
     public static void main(String[] args) {
