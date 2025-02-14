@@ -1,9 +1,8 @@
 package com.github.Kluvert1409.sistemabancario;
 
+import com.github.Kluvert1409.sistemabancario.interfacesGUI.InterfacePrimaria;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.github.Kluvert1409.sistemabancario.interfacesGUI.InterfacePrimaria;
-import java.awt.GraphicsEnvironment;
 
 /**
  * @author Kluvert
@@ -14,7 +13,6 @@ public class SistemabancarioApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SistemabancarioApplication.class, args);
-
-            janela.setVisible(true);
+        janela.setVisible(true);
     }
 }
