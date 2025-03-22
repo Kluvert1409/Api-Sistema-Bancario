@@ -246,25 +246,29 @@ public class InterfaceAreaUsuario extends JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, insira um valor para o depósito", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
             double valor = Double.parseDouble(textoValor);
-            try {
-                url = new URL("http://localhost:8080/conta/depositar/" + idConta + "/" + valor);
-                conexaoHttp = (HttpURLConnection) url.openConnection();
-                conexaoHttp.setRequestMethod("PUT");
-                int resposta = conexaoHttp.getResponseCode();
+            if (valor <= 0) {
+                JOptionPane.showMessageDialog(this, "Por favor, insira um valor maior que zero para o depósito", "Aviso", JOptionPane.WARNING_MESSAGE);
+            } else {
+                try {
+                    url = new URL("http://localhost:8080/conta/depositar/" + idConta + "/" + valor);
+                    conexaoHttp = (HttpURLConnection) url.openConnection();
+                    conexaoHttp.setRequestMethod("PUT");
+                    int resposta = conexaoHttp.getResponseCode();
 
-                if (resposta == 200) {
-                    JOptionPane.showMessageDialog(this, "Depósito realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    if (saldoMostrado == true) {
-                        saldoMostrado = false;
-                        mostrarSaldo();
+                    if (resposta == 200) {
+                        JOptionPane.showMessageDialog(this, "Depósito realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        if (saldoMostrado == true) {
+                            saldoMostrado = false;
+                            mostrarSaldo();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Erro ao realizar depósito", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Erro ao realizar depósito", "Erro", JOptionPane.ERROR_MESSAGE);
-                }
 
-                conexaoHttp.disconnect();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro ao realizar depósito: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                    conexaoHttp.disconnect();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Erro ao realizar depósito: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }
